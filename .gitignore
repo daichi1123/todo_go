@@ -1,1 +1,15 @@
-.DS_STORE
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+*.test
+
+*.out
+
+.sqlite3/*
+!.sqlite3/.gitkeep
+
+node_modules
+.DS_Store
