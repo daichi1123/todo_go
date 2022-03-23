@@ -37,7 +37,7 @@ func (u User) CreateUser() (err error) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	// Closeをしないととめどなく作り続ける
+	// CloseをしないととめどなくUserを作り続ける
 	model.Db.Close()
 
 	return

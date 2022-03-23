@@ -5,6 +5,7 @@ import (
 	"go_portofolio/handler"
 	"go_portofolio/handler/userHandler"
 	"go_portofolio/model"
+	"log"
 	"net/http"
 
 	// データベースに接続するパッケージ
@@ -33,7 +34,10 @@ func init() {
 func main() {
 	// これでエラー自体は消えた
 	// model.User{}は使用できないなぜならCreateUserが参照しているのは、userHandlerで定義したUser構造体だから
-	userHandler.User.CreateUser(userHandler.User{})
+	// userHandler.User.CreateUser(userHandler.User{})
+
+	get_user, _ := userHandler.GetUser(3)
+	log.Println(get_user)
 
 	// サーバ周りの作成
 	mux := http.NewServeMux()
