@@ -30,8 +30,9 @@ func init() {
 }
 
 func main() {
-	// Userテーブル作成
-	fmt.Println(model.Db)
+	// これでエラー自体は消えた
+	// model.User{}は使用できないなぜならCreateUserが参照しているのは、userHandlerで定義したUser構造体だから
+	userHandler.User.CreateUser(userHandler.User{})
 
 	// サーバ周りの作成
 	mux := http.NewServeMux()
