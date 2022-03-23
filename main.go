@@ -5,6 +5,7 @@ import (
 	"go_portofolio/handler"
 	"go_portofolio/handler/userHandler"
 	"go_portofolio/model"
+	"log"
 	"net/http"
 
 	// データベースに接続するパッケージ
