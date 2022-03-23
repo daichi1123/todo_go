@@ -28,6 +28,10 @@ func init() {
 }
 
 func main() {
+	// Userテーブル作成
+	fmt.Println(model.Db)
+
+	// サーバ周りの作成
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/ok", func(w http.ResponseWriter, r *http.Request) {
