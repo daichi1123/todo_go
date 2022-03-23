@@ -1,4 +1,4 @@
-package handler
+package userHandler
 
 import (
 	"go_portofolio/model"
