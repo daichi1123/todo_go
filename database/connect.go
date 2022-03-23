@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 
+	_ "github.com/go-sql-driver/mysql"
 	"gopkg.in/ini.v1"
 )
 

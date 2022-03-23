@@ -18,20 +18,26 @@ const (
 	tableNameUser = "users"
 )
 
-func init() {
+func DB_init() {
+	log.Println("呼ばれた")
 	Db, err = sql.Open("mysql", database.Config.Db_info)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	cmdU := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s(
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		uuid STRING NOT NULL UNIQUE,
-		name STRING,
-		password STRING,
-		created_at DATETIME)`, tableNameUser)
+	// stringは使えなかった
+	const createUsers = (`CREATE TABLE IF NOT EXISTS users(
+		id INTEGER PRIMARY KEY AUTO_INCREMENT,
+		uuid VARCHAR(100) NOT NULL UNIQUE,
+		name VARCHAR(100),
+		email VARCHAR(100),
+		password VARCHAR(100),
+		created_at DATETIME)`)
 
-	Db.Exec(cmdU)
+	_, err = Db.Exec(createUsers)
+	if err != nil {
+		log.Print(err)
+	}
 }
 
 // uuidの作成

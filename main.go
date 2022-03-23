@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go_portofolio/handler"
+	"go_portofolio/handler/userHandler"
 	"go_portofolio/model"
 	"net/http"
 
@@ -26,11 +27,13 @@ func init() {
 		Port:    cfg.Section("web").Key("port").String(),
 		Db_info: cfg.Section("db").Key("db_info").String(),
 	}
+	model.DB_init()
 }
 
 func main() {
-	// Userテーブル作成
-	fmt.Println(model.Db)
+	// これでエラー自体は消えた
+	// model.User{}は使用できないなぜならCreateUserが参照しているのは、userHandlerで定義したUser構造体だから
+	userHandler.User.CreateUser(userHandler.User{})
 
 	// サーバ周りの作成
 	mux := http.NewServeMux()
