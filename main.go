@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go_portofolio/handler"
+	"go_portofolio/model"
 	"net/http"
 
 	// データベースに接続するパッケージ
