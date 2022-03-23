@@ -27,6 +27,7 @@ func init() {
 		Port:    cfg.Section("web").Key("port").String(),
 		Db_info: cfg.Section("db").Key("db_info").String(),
 	}
+	model.DB_init()
 }
 
 func main() {
