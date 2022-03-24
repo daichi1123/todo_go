@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"go_portofolio/handler"
-	"go_portofolio/handler/todoHandler"
 	"go_portofolio/model"
 	"net/http"
 
