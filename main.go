@@ -34,6 +34,7 @@ func main() {
 	// model.User{}は使用できないなぜならCreateUserが参照しているのは、userHandlerで定義したUser構造体だから
 	// Create
 	// userHandler.User.CreateUser(userHandler.User{})
+	todoHandler.Todo.CreateTodo(todoHandler.Todo{})
 
 	// Get
 	// get_user, _ := userHandler.GetUser(2)
