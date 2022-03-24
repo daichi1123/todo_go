@@ -1,7 +1,18 @@
-package handler
+package todoHandler
 
-import "fmt"
+import (
+	"go_portofolio/model"
+	"log"
+)
 
-func deleteTodo() {
-	fmt.Println("this is delete_todo file")
+func (t *Todo) DeleteTodo() (err error) {
+	const deleteT = `DELETE FROM todos WHERE id = ?`
+	stmt, _ := model.Db.Prepare(deleteT)
+	_, err = stmt.Exec(t.ID)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	model.Db.Close()
+
+	return
 }
