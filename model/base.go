@@ -19,14 +19,13 @@ const (
 )
 
 func DB_init() {
-	log.Println("呼ばれた")
 	Db, err = sql.Open("mysql", database.Config.Db_info)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
 	// stringは使えなかった
-	const createUsers = (`CREATE TABLE IF NOT EXISTS users(
+	const createUsersTable = (`CREATE TABLE IF NOT EXISTS users(
 		id INTEGER PRIMARY KEY AUTO_INCREMENT,
 		uuid VARCHAR(100) NOT NULL UNIQUE,
 		name VARCHAR(100),
@@ -34,7 +33,19 @@ func DB_init() {
 		password VARCHAR(100),
 		created_at DATETIME)`)
 
-	_, err = Db.Exec(createUsers)
+	_, err = Db.Exec(createUsersTable)
+	if err != nil {
+		log.Print(err)
+	}
+
+	// stringは使えなかった
+	const createTodosTable = (`CREATE TABLE IF NOT EXISTS todos(
+		id INTEGER PRIMARY KEY AUTO_INCREMENT,
+		content TEXT,
+		user_id INTEGER,
+		created_at DATETIME)`)
+
+	_, err = Db.Exec(createTodosTable)
 	if err != nil {
 		log.Print(err)
 	}
