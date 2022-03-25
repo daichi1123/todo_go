@@ -39,7 +39,11 @@ func main() {
 
 	// Get
 	// get_user, _ := userHandler.GetUser(2)
-	get_todo, _ := todoHandler.GetTodo(2)
+	// get_todo, _ := todoHandler.GetTodo(2)
+	todos, _ := todoHandler.GetTodos()
+	for _, v := range todos {
+		fmt.Println(v)
+	}
 
 	// Update
 	// get_user.UpdateUser()
@@ -47,7 +51,7 @@ func main() {
 
 	// Delete
 	// get_user.DeleteUser()
-	get_todo.DeleteTodo()
+	// get_todo.DeleteTodo()
 
 	// サーバ周りの作成
 	mux := http.NewServeMux()
