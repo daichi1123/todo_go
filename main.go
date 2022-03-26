@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"go_portofolio/handler"
-	"go_portofolio/handler/todoHandler"
 	"go_portofolio/model"
 	"net/http"
 
@@ -40,10 +39,14 @@ func main() {
 	// Get
 	// get_user, _ := userHandler.GetUser(2)
 	// get_todo, _ := todoHandler.GetTodo(2)
-	todos, _ := todoHandler.GetTodos()
-	for _, v := range todos {
-		fmt.Println(v)
-	}
+	// todos, _ := todoHandler.GetTodos()
+	// for _, v := range todos {
+	// 	fmt.Println(v)
+	// }
+
+	// あるユーザが所持しているtodosを表示する
+	// user情報を取得する
+	// get_user, _ := userHandler.GetUser(1)
 
 	// Update
 	// get_user.UpdateUser()
