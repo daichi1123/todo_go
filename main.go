@@ -16,6 +16,7 @@ import (
 type ConfigList struct {
 	Port    string
 	Db_info string
+	LogFile string
 }
 
 var Config ConfigList
@@ -24,6 +25,7 @@ func init() {
 	cfg, _ := ini.Load("config.ini")
 	Config = ConfigList{
 		Port:    cfg.Section("web").Key("port").String(),
+		LogFile: cfg.Section("web").Key("log_file").String(),
 		Db_info: cfg.Section("db").Key("db_info").String(),
 	}
 	model.DB_init()
