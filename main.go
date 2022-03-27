@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"go_portofolio/handler"
 	"go_portofolio/handler/router"
+	"go_portofolio/handler/userHandler"
 	"go_portofolio/model"
+	"log"
 	"net/http"
 
 	// データベースに接続するパッケージ
@@ -33,6 +35,15 @@ func init() {
 }
 
 func main() {
+	user, _ := userHandler.GetUserByEmail("sample@example.com")
+	session, err := user.CreateSession()
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	valid, _ := session.CheckSession()
+	fmt.Println(valid)
+
 	// これでエラー自体は消えた
 	// model.User{}は使用できないなぜならCreateUserが参照しているのは、userHandlerで定義したUser構造体だから
 	// Create
@@ -67,6 +78,9 @@ func main() {
 	})
 
 	mux.HandleFunc("/signup", router.Signup)
+	// sessionがあればログイン状態にするようにしなければならない
+	mux.HandleFunc("/login", router.Login)
+
 	mux.HandleFunc("/index", handler.Index)
 	// mux.HandleFunc("/data", handler.DataDisplay)
 
