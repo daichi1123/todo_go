@@ -38,3 +38,7 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", 302)
 	}
 }
+
+func Login(w http.ResponseWriter, r *http.Request) {
+	GenerateHTML(w, nil, "layout", "public_navbar", "login")
+}
