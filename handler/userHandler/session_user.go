@@ -1,7 +1,6 @@
 package userHandler
 
 import (
-	"fmt"
 	"go_portofolio/model"
 	"log"
 )
@@ -9,7 +8,6 @@ import (
 type user model.User
 
 func GetUserByEmail(email string) (user User, err error) {
-	fmt.Println("ここは北")
 	user = User{}
 	const select_user = `SELECT id, uuid, name, email, password
 	from users where email = ?`
