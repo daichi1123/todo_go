@@ -49,6 +49,15 @@ func DB_init() {
 	if err != nil {
 		log.Print(err)
 	}
+
+	const createSessionTable = (`CREATE TABLE IF NOT EXISTS sessions(
+		id INTEGER PRIMARY KEY AUTO_INCREMENT,
+		uuid VARCHAR(100) NOT NULL UNIQUE,
+		email VARCHAR(100),
+		user_id INTEGER,
+		created_at DATETIME)`)
+
+	Db.Exec(createSessionTable)
 }
 
 // uuidの作成
