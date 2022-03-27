@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 	"go_portofolio/handler"
+	"go_portofolio/handler/router"
+	"go_portofolio/handler/userHandler"
 	"go_portofolio/model"
+	"log"
 	"net/http"
 
 	// データベースに接続するパッケージ
@@ -16,6 +19,7 @@ import (
 type ConfigList struct {
 	Port    string
 	Db_info string
+	LogFile string
 }
 
 var Config ConfigList
@@ -24,12 +28,22 @@ func init() {
 	cfg, _ := ini.Load("config.ini")
 	Config = ConfigList{
 		Port:    cfg.Section("web").Key("port").String(),
+		LogFile: cfg.Section("web").Key("log_file").String(),
 		Db_info: cfg.Section("db").Key("db_info").String(),
 	}
 	model.DB_init()
 }
 
 func main() {
+	user, _ := userHandler.GetUserByEmail("sample@gmail.com")
+	session, err := user.CreateSession()
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	valid, _ := session.CheckSession()
+	fmt.Println(valid)
+
 	// これでエラー自体は消えた
 	// model.User{}は使用できないなぜならCreateUserが参照しているのは、userHandlerで定義したUser構造体だから
 	// Create
@@ -62,6 +76,12 @@ func main() {
 	mux.HandleFunc("/ok", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("テスト用")
 	})
+
+	mux.HandleFunc("/signup", router.Signup)
+	// sessionがあればログイン状態にするようにしなければならない
+	mux.HandleFunc("/login", router.Login)
+	mux.HandleFunc("/authenticate", router.Authenticate)
+
 	mux.HandleFunc("/index", handler.Index)
 	// mux.HandleFunc("/data", handler.DataDisplay)
 

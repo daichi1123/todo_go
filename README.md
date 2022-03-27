@@ -6,3 +6,5 @@ Package userHandler
 - Get    : GetUser
 - Update : UpdateUser
 - Delete : DeleteUser
+
+utils Goの便利なライブラリなどを作っていくディレクトリ
