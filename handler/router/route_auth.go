@@ -42,3 +42,29 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 func Login(w http.ResponseWriter, r *http.Request) {
 	GenerateHTML(w, nil, "layout", "public_navbar", "login")
 }
+
+func Authenticate(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	user, err := userHandler.GetUserByEmail(r.PostFormValue("email"))
+	if err != nil {
+		log.Fatalln(err)
+		http.Redirect(w, r, "login", 302)
+	}
+	if user.Password == model.Encypt(r.PostFormValue("password")) {
+		session, err := user.CreateSession()
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		cookie := http.Cookie{
+			Name:     "_cookie",
+			Value:    session.UUID,
+			HttpOnly: true,
+		}
+		http.SetCookie(w, &cookie)
+
+		http.Redirect(w, r, "/", 302)
+	} else {
+		http.Redirect(w, r, "/login", 302)
+	}
+}
