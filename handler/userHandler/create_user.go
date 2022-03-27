@@ -27,6 +27,7 @@ func (u User) CreateUser() (err error) {
 		password,
 		created_at) values (?, ?, ?, ?, ?)`
 
+	model.Db.Begin()
 	_, err = model.Db.Exec(
 		insert,
 		model.CreateUUID(),
