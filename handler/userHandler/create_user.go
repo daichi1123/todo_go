@@ -15,9 +15,9 @@ type User model.User
 // ポインタレシーバを値レシーバに変更したらエラーが消えた
 func (u User) CreateUser() (err error) {
 	// CreateUserのTEST用
-	u.Name = "test1"
-	u.Email = "test@example.com"
-	u.Password = "test"
+	// u.Name = "test1"
+	// u.Email = "test@example.com"
+	// u.Password = "test"
 	// CreateUserのTEST用
 
 	insert := `insert into users (
