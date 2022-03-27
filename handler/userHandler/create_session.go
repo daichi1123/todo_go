@@ -18,8 +18,6 @@ func (u *User) CreateSession() (session Session, err error) {
 		user_id,
 		created_at) values(?, ?, ?, ?)`
 
-	fmt.Println(createSession)
-
 	result, err := model.Db.Exec(createSession, model.CreateUUID(), u.Email, u.ID, time.Now())
 	if err != nil {
 		log.Fatalln(err)
@@ -39,7 +37,6 @@ func (u *User) CreateSession() (session Session, err error) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	model.Db.Close()
 
 	return
 }
