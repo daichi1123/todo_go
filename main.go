@@ -35,7 +35,7 @@ func init() {
 }
 
 func main() {
-	user, _ := userHandler.GetUserByEmail("sample@example.com")
+	user, _ := userHandler.GetUserByEmail("sample@gmail.com")
 	session, err := user.CreateSession()
 	if err != nil {
 		log.Fatalln(err)
@@ -80,6 +80,7 @@ func main() {
 	mux.HandleFunc("/signup", router.Signup)
 	// sessionがあればログイン状態にするようにしなければならない
 	mux.HandleFunc("/login", router.Login)
+	mux.HandleFunc("/authenticate", router.Authenticate)
 
 	mux.HandleFunc("/index", handler.Index)
 	// mux.HandleFunc("/data", handler.DataDisplay)
