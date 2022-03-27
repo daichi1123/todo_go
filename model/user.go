@@ -11,3 +11,11 @@ type User struct {
 	CreatedAt time.Time
 	Todos     []Todo
 }
+
+type Session struct {
+	ID        int
+	UUID      string
+	Email     string
+	UserID    int
+	CreatedAt time.Time
+}
