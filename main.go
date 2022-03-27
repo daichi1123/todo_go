@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go_portofolio/handler"
+	"go_portofolio/handler/router"
 	"go_portofolio/model"
 	"net/http"
 
@@ -64,6 +65,8 @@ func main() {
 	mux.HandleFunc("/ok", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("テスト用")
 	})
+
+	mux.HandleFunc("/signup", router.Signup)
 	mux.HandleFunc("/index", handler.Index)
 	// mux.HandleFunc("/data", handler.DataDisplay)
 
