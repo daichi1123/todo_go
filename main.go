@@ -81,6 +81,7 @@ func main() {
 	// sessionがあればログイン状態にするようにしなければならない
 	mux.HandleFunc("/login", router.Login)
 	mux.HandleFunc("/authenticate", router.Authenticate)
+	mux.HandleFunc("/todos", router.Index)
 
 	mux.HandleFunc("/index", handler.Index)
 	// mux.HandleFunc("/data", handler.DataDisplay)
