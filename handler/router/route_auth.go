@@ -11,7 +11,13 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		// 第3引数以降は、可変長引数だから複数入れても問題ない
 		// signup.htmlファイルの出力だけを行う関数(GETメソッド)
-		GenerateHTML(w, nil, "layout", "public_navbar", "signup")
+		_, err := Session(w, r)
+		if err != nil {
+			GenerateHTML(w, nil, "layout", "public_navbar", "signup")
+		} else {
+			http.Redirect(w, r, "/todos", 302)
+		}
+
 	} else if r.Method == "POST" {
 		// ParseForm入力フォームの解析を行うメソッド
 		err := r.ParseForm()
@@ -40,7 +46,12 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
-	GenerateHTML(w, nil, "layout", "public_navbar", "login")
+	_, err := Session(w, r)
+	if err != nil {
+		GenerateHTML(w, nil, "layout", "public_navbar", "login")
+	} else {
+		http.Redirect(w, r, "/todos", 302)
+	}
 }
 
 func Authenticate(w http.ResponseWriter, r *http.Request) {
